@@ -33,14 +33,26 @@ const snare = new Pad("snare");
 const closeHiHat = new Pad("close-hihat");
 const openHiHat = new Pad("open-hihat");
 const attack = new Pad("attack");
+const tom1 = new Pad("tom1");
+const tom2 = new Pad("tom2");
+const surdo = new Pad("surdo");
+const conducao = new Pad("conducao");
 
 const pads = {
-  p: closeHiHat,
-  o: openHiHat,
-  i: attack,
-  "\\": kick,
+  p: conducao,
+  o: closeHiHat,
+  i: openHiHat,
+  u: attack,
   z: kick,
-  x: snare,
+  x: kick,
+  c: snare,
+  v: snare,
+  a: tom1,
+  s: tom1,
+  d: tom2,
+  f: tom2,
+  g: surdo,
+  h: surdo,
 };
 
 document.addEventListener("keypress", (e) => {
