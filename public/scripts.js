@@ -17,7 +17,7 @@ class Pad {
     }
 
     const audio = new Audio();
-    audio.src = `./assets/${this.padId}.wav`;
+    audio.src = `./assets/${this.padId}.mp3`;
     audio.play();
 
     this.element.classList.add("highlight");
