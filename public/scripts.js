@@ -1,13 +1,15 @@
 class Pad {
   element = null;
 
-  padId = "";
-
   idTimeout = null;
+
+  audio = null;
 
   constructor(padId) {
     this.padId = padId;
     this.element = document.querySelector(`div#${padId}`);
+    this.audio = new Audio();
+    this.audio.src = `./assets/${padId}.mp3`;
     this.element.onclick = this.play.bind(this);
   }
 
@@ -16,9 +18,8 @@ class Pad {
       clearTimeout(this.idTimeout);
     }
 
-    const audio = new Audio();
-    audio.src = `./assets/${this.padId}.mp3`;
-    audio.play();
+    this.audio.load();
+    this.audio.play();
 
     this.element.classList.add("highlight");
 
