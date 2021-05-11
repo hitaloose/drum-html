@@ -38,6 +38,7 @@ const pads = {
   p: closeHiHat,
   o: openHiHat,
   i: attack,
+  "\\": kick,
   z: kick,
   x: snare,
 };
