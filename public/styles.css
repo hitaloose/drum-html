@@ -1,0 +1,33 @@
+html,
+body,
+main {
+  height: 100%;
+  overflow: hidden;
+}
+
+main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.highlight {
+  background-color: #555 !important;
+  transition: background-color 50ms linear;
+}
+
+.pad {
+  border-radius: 5px;
+  width: 150px;
+  height: 100px;
+  background-color: #333;
+  transition: background-color 50ms linear;
+  margin: 10px;
+  color: #eee;
+  font-family: Arial, Helvetica, sans-serif;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
