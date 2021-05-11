@@ -1,54 +1,51 @@
-const kick = document.querySelector("div#kick");
-const snare = document.querySelector("div#snare");
-const closeHiHat = document.querySelector("div#close-hihat");
-const openHiHat = document.querySelector("div#open-hihat");
-const attack = document.querySelector("div#attack");
+class Pad {
+  element = null;
 
-const play = (fileName) => {
-  const audio = new Audio();
-  audio.src = `./assets/${fileName}.wav`;
-  audio.play();
-};
+  padId = "";
 
-const idTimeout = {};
-const handleClickPad = (fileName, element) => {
-  if (idTimeout[fileName]) {
-    clearTimeout(idTimeout[fileName]);
+  idTimeout = null;
+
+  constructor(padId) {
+    this.padId = padId;
+    this.element = document.querySelector(`div#${padId}`);
+    this.element.onclick = this.play.bind(this);
   }
 
-  play(fileName);
-  element.classList.add("highlight");
+  play() {
+    if (this.idTimeout) {
+      clearTimeout(this.idTimeout);
+    }
 
-  idTimeout[fileName] = setTimeout(() => {
-    element.classList.remove("highlight");
-  }, 500);
+    const audio = new Audio();
+    audio.src = `./assets/${this.padId}.wav`;
+    audio.play();
+
+    this.element.classList.add("highlight");
+
+    this.idTimeout = setTimeout(() => {
+      this.element.classList.remove("highlight");
+    }, 500);
+  }
+}
+
+const kick = new Pad("kick");
+const snare = new Pad("snare");
+const closeHiHat = new Pad("close-hihat");
+const openHiHat = new Pad("open-hihat");
+const attack = new Pad("attack");
+
+const pads = {
+  p: closeHiHat,
+  o: openHiHat,
+  i: attack,
+  z: kick,
+  x: snare,
 };
 
-kick.onclick = () => handleClickPad("kick", kick);
-snare.onclick = () => handleClickPad("snare", snare);
-closeHiHat.onclick = () => handleClickPad("close-hihat", closeHiHat);
-openHiHat.onclick = () => handleClickPad("open-hihat", openHiHat);
-attack.onclick = () => handleClickPad("attack", attack);
-
 document.addEventListener("keypress", (e) => {
-  switch (e.key) {
-    case "p":
-      handleClickPad("close-hihat", closeHiHat);
-      break;
-    case "o":
-      handleClickPad("open-hihat", openHiHat);
-      break;
-    case "i":
-      handleClickPad("attack", attack);
-      break;
-    case "z":
-      handleClickPad("kick", kick);
-      break;
-    case "x":
-      handleClickPad("snare", snare);
-      break;
+  const { key } = e;
 
-    default:
-      break;
+  if (pads[key]) {
+    pads[key].play();
   }
 });
