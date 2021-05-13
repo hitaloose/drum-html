@@ -1,15 +1,13 @@
 class Pad {
   element = null;
 
-  idTimeout = null;
-
   audio = null;
 
+  idTimeout = null;
+
   constructor(padId) {
-    this.padId = padId;
+    this.audio = new Audio(`./assets/${padId}.mp3`);
     this.element = document.querySelector(`div#${padId}`);
-    this.audio = new Audio();
-    this.audio.src = `./assets/${padId}.mp3`;
     this.element.onclick = this.play.bind(this);
   }
 
@@ -29,31 +27,22 @@ class Pad {
   }
 }
 
-const kick = new Pad("kick");
-const snare = new Pad("snare");
-const closeHiHat = new Pad("close-hihat");
-const openHiHat = new Pad("open-hihat");
-const attack = new Pad("attack");
-const tom1 = new Pad("tom1");
-const tom2 = new Pad("tom2");
-const surdo = new Pad("surdo");
-const conducao = new Pad("conducao");
-
 const pads = {
-  p: conducao,
-  o: closeHiHat,
-  i: openHiHat,
-  u: attack,
-  z: kick,
-  x: kick,
-  c: snare,
-  v: snare,
-  a: tom1,
-  s: tom1,
-  d: tom2,
-  f: tom2,
-  g: surdo,
-  h: surdo,
+  y: new Pad("attack"),
+  u: new Pad("open-hihat"),
+  i: new Pad("close-hihat"),
+  o: new Pad("close-hihat"),
+  p: new Pad("conducao"),
+  z: new Pad("kick"),
+  x: new Pad("kick"),
+  c: new Pad("snare"),
+  v: new Pad("snare"),
+  a: new Pad("tom1"),
+  s: new Pad("tom1"),
+  d: new Pad("tom2"),
+  f: new Pad("tom2"),
+  g: new Pad("surdo"),
+  h: new Pad("surdo"),
 };
 
 document.addEventListener("keypress", (e) => {
