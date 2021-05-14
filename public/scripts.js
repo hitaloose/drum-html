@@ -37,6 +37,7 @@ const pads = {
   x: new Pad("kick"),
   c: new Pad("snare"),
   v: new Pad("snare"),
+  b: new Pad("ghost-snare"),
   a: new Pad("tom1"),
   s: new Pad("tom1"),
   d: new Pad("tom2"),
